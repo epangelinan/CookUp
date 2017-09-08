@@ -3,22 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context="com.epicodus.cookup.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CookUp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="15dp"
+        android:text="CookUp"
+        android:textColor="@color/colorTextIcons" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/findRecipesButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter main ingredient"
-        android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp" />
+        android:layout_marginBottom="17dp"
+        android:text="Enter main ingredient" />
 </RelativeLayout>
