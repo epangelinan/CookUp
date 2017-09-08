@@ -23,7 +23,7 @@ public class RecipesActivity extends AppCompatActivity {
             "Indian Butter Chicken", "Holiday Chicken Salad", "Sweet Hot Mustard Chicken",
             "General Tsao's Chicken", "Chicken Asparagus Roll-ups"};
 
-    private String[] chefs = new String[] {"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated", "The Wanderlust Kitchen" };
+    private String[] chefs = new String[] {"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated"};
 
 
     @Override
