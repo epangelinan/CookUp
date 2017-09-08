@@ -12,7 +12,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.findRecipesButton) Button mFindRecipesButton;
     @Bind(R.id.ingredientEditText) EditText mIngredientEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
@@ -26,15 +26,17 @@ public class MainActivity extends AppCompatActivity {
         Typeface pacifico = Typeface.createFromAsset(getAssets(), "fonts/pacifico.ttf");
         mAppNameTextView.setTypeface(pacifico);
 
-        mFindRecipesButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                String ingredient = mIngredientEditText.getText().toString();
-                Intent intent = new Intent(MainActivity.this, RecipesActivity.class);
-                intent.putExtra("ingredient", ingredient);
-                startActivity(intent);
-            }
-        });
+        mFindRecipesButton.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick (View v){
+        if (v == mFindRecipesButton) {
+            String ingredient = mIngredientEditText.getText().toString();
+            Intent intent = new Intent(MainActivity.this, RecipesActivity.class);
+            intent.putExtra("ingredient", ingredient);
+            startActivity(intent);
+        }
+    }
+
 }
