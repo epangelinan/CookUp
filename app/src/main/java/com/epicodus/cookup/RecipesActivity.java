@@ -10,25 +10,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class RecipesActivity extends AppCompatActivity {
-    private TextView mLIngredientTextView;
-    private ListView mListView;
+    @Bind(R.id.ingredientTextView) TextView mIngredientTextView;
+    @Bind(R.id.listView) ListView mListView;
+
     private String[] recipes = new String[] {"Chicken Parmesan", "Buffalo Chicken Wings",
             "Chicken Masala", "Curry Chicken Salad", "Chicken Pot Pie", "Spicy Chicken Soup",
             "Honey-Garlic Chicken", "Rosemary Chicken Kabobs", "Chicken Tortilla Soup", "Chicken Cordon Bleu",
             "Indian Butter Chicken", "Holiday Chicken Salad", "Sweet Hot Mustard Chicken",
             "General Tsao's Chicken", "Chicken Asparagus Roll-ups"};
 
-    private TextView mIngredientTextView;
-    private TextView mAppNameTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
-
-        mListView = (ListView) findViewById(R.id.listView);
-        mIngredientTextView = (TextView) findViewById(R.id.ingredientTextView);
+        ButterKnife.bind(this);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, recipes);
         mListView.setAdapter(adapter);
