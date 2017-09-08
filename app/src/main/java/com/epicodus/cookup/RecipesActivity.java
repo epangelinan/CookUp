@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 public class RecipesActivity extends AppCompatActivity {
     private TextView mIngredientTextView;
+    private TextView mAppNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,5 +17,6 @@ public class RecipesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
         mIngredientTextView.setText("Here are all the recipes containing " + ingredient);
+
     }
 }
