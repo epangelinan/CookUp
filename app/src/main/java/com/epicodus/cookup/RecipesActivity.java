@@ -23,13 +23,16 @@ public class RecipesActivity extends AppCompatActivity {
             "Indian Butter Chicken", "Holiday Chicken Salad", "Sweet Hot Mustard Chicken",
             "General Tsao's Chicken", "Chicken Asparagus Roll-ups"};
 
+    private String[] chefs = new String[] {"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated", "The Wanderlust Kitchen" };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, recipes);
+        CookUpArrayAdapter adapter = new CookUpArrayAdapter(this, android.R.layout.simple_list_item_1, recipes, chefs);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
