@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.findRecipesButton) Button mFindRecipesButton;
+    @Bind(R.id.aboutButton) Button mAboutButton;
     @Bind(R.id.ingredientEditText) EditText mIngredientEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAppNameTextView.setTypeface(pacifico);
 
         mFindRecipesButton.setOnClickListener(this);
+        mAboutButton.setOnClickListener(this);
     }
 
     @Override
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String ingredient = mIngredientEditText.getText().toString();
             Intent intent = new Intent(MainActivity.this, RecipesActivity.class);
             intent.putExtra("ingredient", ingredient);
+            startActivity(intent);
+        } else if (v == mAboutButton) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
     }

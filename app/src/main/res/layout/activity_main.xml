@@ -20,9 +20,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="CookUp"
+        android:text="CookUp "
         android:textColor="@color/colorPrimary"
-        android:textSize="55sp"
+        android:textSize="60sp"
         android:textStyle="bold" />
 
     <EditText
@@ -30,10 +30,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/ingredientEditText"
         android:background="@color/colorTextIcons"
-        android:layout_above="@+id/findRecipesButton"
-        android:layout_marginBottom="10dp"
         android:padding="5dp"
         android:hint="Enter Your Main Ingredient"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/findRecipesButton"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -41,7 +41,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="74dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Find Recipes"
+        android:textColor="@color/colorTextIcons" />
+
+    <Button
+        android:id="@+id/aboutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:text="Find Recipes" />
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/holo_purple"
+        android:text="About"
+        android:textColor="@color/colorTextIcons" />
 </RelativeLayout>
