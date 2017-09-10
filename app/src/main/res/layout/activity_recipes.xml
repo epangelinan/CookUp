@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Recipes containing "
         android:id="@+id/ingredientTextView"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="26dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <ListView

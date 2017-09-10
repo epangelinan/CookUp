@@ -45,7 +45,7 @@ public class RecipesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
-        mIngredientTextView.setText("Here are all the recipes containing " + ingredient);
+        mIngredientTextView.setText("Recipes with " + ingredient);
 
     }
 }
