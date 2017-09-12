@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,9 +36,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick (View v){
         if (v == mFindRecipesButton) {
             String ingredient = mIngredientEditText.getText().toString();
-            Intent intent = new Intent(MainActivity.this, RecipesActivity.class);
-            intent.putExtra("ingredient", ingredient);
-            startActivity(intent);
+            String regexStr = "^[0-9]*$";
+            if((mIngredientEditText.getText().toString().trim().length() == 0) || (mIngredientEditText.getText().toString().trim().matches(regexStr))) {
+                Toast.makeText(MainActivity.this, "Please enter your main ingredient", Toast.LENGTH_LONG).show();
+            } else {
+                Intent intent = new Intent(MainActivity.this, RecipesActivity.class);
+                intent.putExtra("ingredient", ingredient);
+                startActivity(intent);
+            }
+
         } else if (v == mAboutButton) {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
