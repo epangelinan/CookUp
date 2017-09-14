@@ -17,11 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     useLibrary 'org.apache.http.legacy'
 
     repositories {
         mavenCentral()
         jcenter()
+    }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'YUMMLY_APP_ID', YummlyAppID
+        it.buildConfigField 'String', 'YUMMLY_APP_KEY', YummlyAppKey
     }
 }
 
@@ -44,4 +50,5 @@ dependencies {
     androidTestCompile('com.android.support.test:runner:0.3') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
 }
