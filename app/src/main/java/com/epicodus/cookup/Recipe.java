@@ -22,4 +22,31 @@ public class Recipe {
         this.mRating = rating;
     }
 
+    public String getImageUrl() {
+        return mImageUrl;
+    }
+
+    public String getSourceDisplayName() {
+        return mSourceDisplayName;
+    }
+
+    public ArrayList<String> getIngredients() {
+        return mIngredients;
+    }
+
+    public String getId() {
+        return mId;
+    }
+
+    public String getRecipeName() {
+        return mRecipeName;
+    }
+
+    public int getTotalTimeInSeconds() {
+        return mTotalTimeInSeconds;
+    }
+
+    public double getRating() {
+        return mRating;
+    }
 }
