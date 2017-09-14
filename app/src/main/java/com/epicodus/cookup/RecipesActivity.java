@@ -71,13 +71,23 @@ public class RecipesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(Call call, Response response) {
+                mRecipes = yummlyService.processResults(response);
+
+                RecipesActivity.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        String[] recipeNames = new String[mRecipes.size()];
+                        for (int i = 0; i < recipeNames.length; i++) {
+                            recipeNames[i] = mRecipes.get(i).getRecipeName();
+                        }
+
+                        ArrayAdapter adapter = new ArrayAdapter(RecipesActivity.this,
+                                android.R.layout.simple_list_item_1, recipeNames);
+                        mListView.setAdapter(adapter);
+                    }
+                });
             }
         });
     }
