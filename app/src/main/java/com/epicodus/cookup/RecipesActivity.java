@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,10 +22,10 @@ import okhttp3.Response;
 
 public class RecipesActivity extends AppCompatActivity {
     public static final String TAG = RecipesActivity.class.getSimpleName();
-    @Bind(R.id.ingredientTextView)
-    TextView mIngredientTextView;
-    @Bind(R.id.listView)
-    ListView mListView;
+    @Bind(R.id.ingredientTextView) TextView mIngredientTextView;
+    @Bind(R.id.listView) ListView mListView;
+
+    public ArrayList<Recipe> mRecipes = new ArrayList<>();
 
     private String[] recipes = new String[]{"Chicken Parmesan", "Buffalo Chicken Wings",
             "Chicken Masala", "Curry Chicken Salad", "Chicken Pot Pie", "Spicy Chicken Soup",
@@ -56,11 +57,11 @@ public class RecipesActivity extends AppCompatActivity {
         String ingredient = intent.getStringExtra("ingredient");
       //  mIngredientTextView.setText("Recipes with " + ingredient);
 
-        getRestaurants(ingredient);
+        getRecipes(ingredient);
 
     }
 
-    private void getRestaurants(String ingredient) {
+    private void getRecipes(String ingredient) {
         final YummlyService yummlyService = new YummlyService();
 
         yummlyService.findRecipes(ingredient, new Callback() {
