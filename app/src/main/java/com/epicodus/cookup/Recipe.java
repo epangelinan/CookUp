@@ -4,7 +4,7 @@ package com.epicodus.cookup;
 import java.util.ArrayList;
 
 public class Recipe {
-    private String mImageUrl;
+    private String mImageUrlsBySize;
     private String mSourceDisplayName;
     private ArrayList<String> mIngredients = new ArrayList<>();
     private String mId;
@@ -12,8 +12,8 @@ public class Recipe {
     private int mTotalTimeInSeconds;
     private double mRating;
 
-    public Recipe (String imageUrl, String sourceDisplayName, ArrayList<String> ingredients, String id, String recipeName, int totalTimeInSeconds, double rating) {
-        this.mImageUrl = imageUrl;
+    public Recipe (String imageUrlsBySize, String sourceDisplayName, ArrayList<String> ingredients, String id, String recipeName, int totalTimeInSeconds, double rating) {
+        this.mImageUrlsBySize = imageUrlsBySize;
         this.mSourceDisplayName = sourceDisplayName;
         this.mIngredients = ingredients;
         this.mId = id;
@@ -22,8 +22,8 @@ public class Recipe {
         this.mRating = rating;
     }
 
-    public String getImageUrl() {
-        return mImageUrl;
+    public String getImageUrlsBySize() {
+        return mImageUrlsBySize;
     }
 
     public String getSourceDisplayName() {
