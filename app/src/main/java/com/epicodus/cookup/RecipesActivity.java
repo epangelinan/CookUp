@@ -3,6 +3,7 @@ package com.epicodus.cookup;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,20 +11,28 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class RecipesActivity extends AppCompatActivity {
-    @Bind(R.id.ingredientTextView) TextView mIngredientTextView;
-    @Bind(R.id.listView) ListView mListView;
+    public static final String TAG = RecipesActivity.class.getSimpleName();
+    @Bind(R.id.ingredientTextView)
+    TextView mIngredientTextView;
+    @Bind(R.id.listView)
+    ListView mListView;
 
-    private String[] recipes = new String[] {"Chicken Parmesan", "Buffalo Chicken Wings",
+    private String[] recipes = new String[]{"Chicken Parmesan", "Buffalo Chicken Wings",
             "Chicken Masala", "Curry Chicken Salad", "Chicken Pot Pie", "Spicy Chicken Soup",
             "Honey-Garlic Chicken", "Rosemary Chicken Kabobs", "Chicken Tortilla Soup", "Chicken Cordon Bleu",
             "Indian Butter Chicken", "Holiday Chicken Salad", "Sweet Hot Mustard Chicken",
             "General Tsao's Chicken", "Chicken Asparagus Roll-ups"};
 
-    private String[] chefs = new String[] {"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated"};
+    private String[] chefs = new String[]{"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated"};
 
 
     @Override
@@ -38,14 +47,37 @@ public class RecipesActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String recipe = ((TextView)view).getText().toString();
+                String recipe = ((TextView) view).getText().toString();
                 Toast.makeText(RecipesActivity.this, recipe, Toast.LENGTH_LONG).show();
             }
         });
 
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
-        mIngredientTextView.setText("Recipes with " + ingredient);
+      //  mIngredientTextView.setText("Recipes with " + ingredient);
 
+        getRestaurants(ingredient);
+
+    }
+
+    private void getRestaurants(String ingredient) {
+        final YummlyService yummlyService = new YummlyService();
+
+        yummlyService.findRecipes(ingredient, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String jsonData = response.body().string();
+                    Log.v(TAG, jsonData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
