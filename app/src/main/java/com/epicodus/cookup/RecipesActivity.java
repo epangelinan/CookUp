@@ -27,13 +27,13 @@ public class RecipesActivity extends AppCompatActivity {
 
     public ArrayList<Recipe> mRecipes = new ArrayList<>();
 
-    private String[] recipes = new String[]{"Chicken Parmesan", "Buffalo Chicken Wings",
-            "Chicken Masala", "Curry Chicken Salad", "Chicken Pot Pie", "Spicy Chicken Soup",
-            "Honey-Garlic Chicken", "Rosemary Chicken Kabobs", "Chicken Tortilla Soup", "Chicken Cordon Bleu",
-            "Indian Butter Chicken", "Holiday Chicken Salad", "Sweet Hot Mustard Chicken",
-            "General Tsao's Chicken", "Chicken Asparagus Roll-ups"};
-
-    private String[] chefs = new String[]{"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated"};
+//    private String[] recipes = new String[]{"Chicken Parmesan", "Buffalo Chicken Wings",
+//            "Chicken Masala", "Curry Chicken Salad", "Chicken Pot Pie", "Spicy Chicken Soup",
+//            "Honey-Garlic Chicken", "Rosemary Chicken Kabobs", "Chicken Tortilla Soup", "Chicken Cordon Bleu",
+//            "Indian Butter Chicken", "Holiday Chicken Salad", "Sweet Hot Mustard Chicken",
+//            "General Tsao's Chicken", "Chicken Asparagus Roll-ups"};
+//
+//    private String[] chefs = new String[]{"Kristine's Kitchen", "Southern Kissed", "The Weary Chef", "The Foodie Physician", "Byte Sized Nutrition", "Jessie and Melissa", "Family Food on the Table", "Mommy of a Monster", "The Recipe Critic", "The Cooking Jar", "Magic Skillet", "Bless This Mess", "Add a Pinch", "Betty Crocker", "Well Plated"};
 
 
     @Override
@@ -42,16 +42,16 @@ public class RecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipes);
         ButterKnife.bind(this);
 
-        CookUpArrayAdapter adapter = new CookUpArrayAdapter(this, android.R.layout.simple_list_item_1, recipes, chefs);
-        mListView.setAdapter(adapter);
+//        CookUpArrayAdapter adapter = new CookUpArrayAdapter(this, android.R.layout.simple_list_item_1, recipes, chefs);
+//        mListView.setAdapter(adapter);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String recipe = ((TextView) view).getText().toString();
-                Toast.makeText(RecipesActivity.this, recipe, Toast.LENGTH_LONG).show();
-            }
-        });
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String recipe = ((TextView) view).getText().toString();
+//                Toast.makeText(RecipesActivity.this, recipe, Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
@@ -86,6 +86,17 @@ public class RecipesActivity extends AppCompatActivity {
                         ArrayAdapter adapter = new ArrayAdapter(RecipesActivity.this,
                                 android.R.layout.simple_list_item_1, recipeNames);
                         mListView.setAdapter(adapter);
+
+                        for (Recipe recipe : mRecipes) {
+                            Log.d(TAG, "Name: " + restaurant.getName());
+                            Log.d(TAG, "Phone: " + restaurant.getPhone());
+                            Log.d(TAG, "Website: " + restaurant.getWebsite());
+                            Log.d(TAG, "Image url: " + restaurant.getImageUrl());
+                            Log.d(TAG, "Rating: " + Double.toString(restaurant.getRating()));
+                            Log.d(TAG, "Address: " + android.text.TextUtils.join(", ", restaurant.getAddress()));
+                            Log.d(TAG, "Categories: " + restaurant.getCategories().toString());
+                        }
+
                     }
                 });
             }
