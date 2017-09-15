@@ -2,6 +2,8 @@ package com.epicodus.cookup;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.epicodus.cookup.ui.MainActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 

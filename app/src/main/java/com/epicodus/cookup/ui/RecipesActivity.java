@@ -1,15 +1,16 @@
-package com.epicodus.cookup;
+package com.epicodus.cookup.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epicodus.cookup.R;
+import com.epicodus.cookup.models.Recipe;
+import com.epicodus.cookup.services.YummlyService;
 
 import java.io.IOException;
 import java.util.ArrayList;

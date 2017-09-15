@@ -1,6 +1,9 @@
-package com.epicodus.cookup;
+package com.epicodus.cookup.services;
 
 import android.util.Log;
+
+import com.epicodus.cookup.Constants;
+import com.epicodus.cookup.models.Recipe;
 
 import org.json.JSONArray;
 import org.json.JSONException;

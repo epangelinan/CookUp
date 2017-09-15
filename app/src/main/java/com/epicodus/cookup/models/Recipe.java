@@ -1,4 +1,4 @@
-package com.epicodus.cookup;
+package com.epicodus.cookup.models;
 
 
 import java.util.ArrayList;
