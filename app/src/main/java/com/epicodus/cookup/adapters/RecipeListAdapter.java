@@ -23,6 +23,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     private ArrayList<Recipe> mRecipes = new ArrayList<>();
     private Context mContext;
 
@@ -74,7 +77,12 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         }
 
         public void bindRecipe(Recipe recipe) {
-            Picasso.with(mContext).load(recipe.getImageUrlsBySize()).into(mRecipeImageView);
+            Picasso.with(mContext)
+                    .load(recipe.getImageUrlsBySize())
+                    .resize(MAX_WIDTH, MAX_HEIGHT)
+                    .centerCrop()
+                    .into(mRecipeImageView);
+
             mRecipeNameTextView.setText(recipe.getRecipeName());
             mSourceDisplayNameTextView.setText(recipe.getSourceDisplayName());
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
