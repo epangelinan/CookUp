@@ -88,13 +88,14 @@ public class RecipesActivity extends AppCompatActivity {
                         mListView.setAdapter(adapter);
 
                         for (Recipe recipe : mRecipes) {
-                            Log.d(TAG, "Name: " + restaurant.getName());
-                            Log.d(TAG, "Phone: " + restaurant.getPhone());
-                            Log.d(TAG, "Website: " + restaurant.getWebsite());
-                            Log.d(TAG, "Image url: " + restaurant.getImageUrl());
-                            Log.d(TAG, "Rating: " + Double.toString(restaurant.getRating()));
-                            Log.d(TAG, "Address: " + android.text.TextUtils.join(", ", restaurant.getAddress()));
-                            Log.d(TAG, "Categories: " + restaurant.getCategories().toString());
+                            Log.d(TAG, "imageUrlsBySize: " + recipe.getImageUrlsBySize());
+                            Log.d(TAG, "sourceDisplayName : " + recipe.getSourceDisplayName());
+                            Log.d(TAG, "ingredients : " + recipe.getIngredients().toString());
+                            Log.d(TAG, "id: " + recipe.getId());
+                            Log.d(TAG, "recipeName: " + recipe.getRecipeName());
+                            Log.d(TAG, "mTotalTimeInSeconds: " + recipe.getTotalTimeInSeconds());
+                            Log.d(TAG, "mRating: " + Double.toString(recipe.getRating()));
+
                         }
 
                     }
