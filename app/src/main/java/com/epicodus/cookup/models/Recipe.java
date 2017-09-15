@@ -1,8 +1,11 @@
 package com.epicodus.cookup.models;
 
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
+@Parcel
 public class Recipe {
     private String mImageUrlsBySize;
     private String mSourceDisplayName;
@@ -11,6 +14,8 @@ public class Recipe {
     private String mRecipeName;
     private int mTotalTimeInSeconds;
     private double mRating;
+
+    public Recipe() {}
 
     public Recipe (String imageUrlsBySize, String sourceDisplayName, ArrayList<String> ingredients, String id, String recipeName, int totalTimeInSeconds, double rating) {
         this.mImageUrlsBySize = imageUrlsBySize;
