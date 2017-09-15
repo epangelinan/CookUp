@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 public class RecipeDetailFragment extends Fragment {
     @Bind(R.id.recipeImageView) ImageView mRecipeImageLabel;
     @Bind(R.id.recipeNameTextView) TextView mRecipeNameLabel;
+    @Bind(R.id.sourceDisplayNameTextView) TextView mSourceDisplayNameLabel;
     @Bind(R.id.ratingTextView) TextView mRatingLabel;
     @Bind(R.id.ingredientsTextView) TextView mIngredientsLabel;
     @Bind(R.id.directionsTextView) TextView mDirectionsLabel;
@@ -48,7 +49,7 @@ public class RecipeDetailFragment extends Fragment {
         Picasso.with(view.getContext()).load(mRecipe.getImageUrlsBySize()).into(mRecipeImageLabel);
 
         mRecipeNameLabel.setText(mRecipe.getRecipeName());
-
+        mSourceDisplayNameLabel.setText(mRecipe.getSourceDisplayName());
         mIngredientsLabel.setText(android.text.TextUtils.join(", ", mRecipe.getIngredients()));
         mRatingLabel.setText(Double.toString(mRecipe.getRating()) + "/5");
         mDirectionsLabel.setText("Read Directions");
