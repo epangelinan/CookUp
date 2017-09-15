@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -59,6 +60,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         }
 
         public void bindRecipe(Recipe recipe) {
+            Picasso.with(mContext).load(recipe.getImageUrlsBySize()).into(mRecipeImageView);
             mRecipeNameTextView.setText(recipe.getRecipeName());
             mSourceDisplayNameTextView.setText(recipe.getSourceDisplayName());
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
