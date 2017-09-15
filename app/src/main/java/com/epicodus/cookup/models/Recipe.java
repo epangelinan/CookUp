@@ -43,8 +43,11 @@ public class Recipe {
     }
 
     public int getTotalTimeInSeconds() {
+
         return mTotalTimeInSeconds;
     }
+
+
 
     public double getRating() {
         return mRating;
