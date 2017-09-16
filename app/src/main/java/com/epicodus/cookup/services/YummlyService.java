@@ -54,14 +54,9 @@ public class YummlyService {
                 for (int i = 0; i < matchesJSON.length(); i++) {
                     JSONObject recipeJSON = matchesJSON.getJSONObject(i);
 
-                    //JSONObject obj = new JSONObject();
                     String imageUrlsBySize = recipeJSON.getJSONObject("imageUrlsBySize")
                             .getString("90");
                     Log.v("The URL is: ", imageUrlsBySize);
-
-//                    String imageUrlsBySize = recipeJSON.getJSONObject("imageUrlsBySize")
-//                            .getJSONObject("90").toString();
-                 //   Log.d(TAG, imageUrlsBySize);
 
                     String sourceDisplayName = recipeJSON.getString("sourceDisplayName");
                     String id = recipeJSON.getString("id");
