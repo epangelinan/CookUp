@@ -40,7 +40,6 @@ public class RecipesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
-
         getRecipes(ingredient);
     }
 
