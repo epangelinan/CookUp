@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
+import com.google.firebase.database.DatabaseReference;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -69,6 +70,8 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
 
         mDirectionsLabel.setOnClickListener(this);
 
+        mSaveRecipeButton.setOnClickListener(this);
+
         return view;
     }
 
@@ -82,6 +85,13 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://" + sourceName + ".com"));
             startActivity(webIntent);
+        }
+        if (v == mSaveRecipeButton) {
+            DatabaseReference recipeRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RECIPES);
+            recipeRef.push().setValue(mRecipe);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
