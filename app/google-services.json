@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "665845188699",
+    "firebase_url": "https://cookup-fb062.firebaseio.com",
+    "project_id": "cookup-fb062",
+    "storage_bucket": "cookup-fb062.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665845188699:android:263edc9632e2dcb7",
+        "android_client_info": {
+          "package_name": "com.epicodus.cookup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665845188699-5ikim8e9sf4be4jmt3utb2kiiqlacqj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.cookup",
+            "certificate_hash": "e83c02f7cc89d2a6eccaca4c92e750af49b9e725"
+          }
+        },
+        {
+          "client_id": "665845188699-j3ce1qag2n8e5gb2cu46ojou6apvp39r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAILZdOeuqUdtydwDWGpOkYBEiq4aq0JCY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665845188699-j3ce1qag2n8e5gb2cu46ojou6apvp39r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
