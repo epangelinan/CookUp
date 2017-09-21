@@ -7,7 +7,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.epicodus.cookup.ui.RecipesActivity">
+    tools:context="com.epicodus.cookup.ui.RecipeListActivity">
 
     <TextView
         android:layout_width="wrap_content"

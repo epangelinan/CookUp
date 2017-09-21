@@ -1,15 +1,15 @@
 package com.epicodus.cookup.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
+import com.epicodus.cookup.Constants;
 import com.epicodus.cookup.R;
 import com.epicodus.cookup.adapters.RecipeListAdapter;
 import com.epicodus.cookup.models.Recipe;
@@ -24,8 +24,11 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class RecipesActivity extends AppCompatActivity {
-    public static final String TAG = RecipesActivity.class.getSimpleName();
+public class RecipeListActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRecentIngredient;
+
+    public static final String TAG = RecipeListActivity.class.getSimpleName();
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private RecipeListAdapter mAdapter;
 
@@ -41,6 +44,14 @@ public class RecipesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
         getRecipes(ingredient);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentIngredient = mSharedPreferences.getString(Constants.PREFERENCES_INGREDIENT_KEY, null);
+   //     Log.d("Shared Pref Ingredient", mRecentIngredient);
+
+        if (mRecentIngredient != null) {
+            getRecipes(mRecentIngredient);
+        }
     }
 
     private void getRecipes(String ingredient) {
@@ -56,7 +67,7 @@ public class RecipesActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 mRecipes = yummlyService.processResults(response);
 
-                RecipesActivity.this.runOnUiThread(new Runnable() {
+                RecipeListActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
@@ -64,7 +75,7 @@ public class RecipesActivity extends AppCompatActivity {
 
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(RecipesActivity.this);
+                                new LinearLayoutManager(RecipeListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }
