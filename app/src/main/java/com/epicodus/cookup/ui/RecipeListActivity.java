@@ -25,13 +25,13 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RecipeListActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private String mRecentIngredient;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentIngredient;
 
     public static final String TAG = RecipeListActivity.class.getSimpleName();
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-    private RecipeListAdapter mAdapter;
 
+    private RecipeListAdapter mAdapter;
     public ArrayList<Recipe> mRecipes = new ArrayList<>();
 
 
@@ -43,15 +43,16 @@ public class RecipeListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String ingredient = intent.getStringExtra("ingredient");
+
         getRecipes(ingredient);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentIngredient = mSharedPreferences.getString(Constants.PREFERENCES_INGREDIENT_KEY, null);
+    //    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    //    mRecentIngredient = mSharedPreferences.getString(Constants.PREFERENCES_INGREDIENT_KEY, null);
    //     Log.d("Shared Pref Ingredient", mRecentIngredient);
 
-        if (mRecentIngredient != null) {
-            getRecipes(mRecentIngredient);
-        }
+   //     if (mRecentIngredient != null) {
+   //         getRecipes(mRecentIngredient);
+   //     }
     }
 
     private void getRecipes(String ingredient) {
