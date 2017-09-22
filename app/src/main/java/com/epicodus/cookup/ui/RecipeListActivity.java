@@ -3,11 +3,16 @@ package com.epicodus.cookup.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.epicodus.cookup.Constants;
 import com.epicodus.cookup.R;
@@ -25,8 +30,9 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RecipeListActivity extends AppCompatActivity {
-//    private SharedPreferences mSharedPreferences;
-//    private String mRecentIngredient;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mRecentIngredient;
 
     public static final String TAG = RecipeListActivity.class.getSimpleName();
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -46,13 +52,49 @@ public class RecipeListActivity extends AppCompatActivity {
 
         getRecipes(ingredient);
 
-    //    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-    //    mRecentIngredient = mSharedPreferences.getString(Constants.PREFERENCES_INGREDIENT_KEY, null);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentIngredient = mSharedPreferences.getString(Constants.PREFERENCES_INGREDIENT_KEY, null);
    //     Log.d("Shared Pref Ingredient", mRecentIngredient);
 
-   //     if (mRecentIngredient != null) {
-   //         getRecipes(mRecentIngredient);
-   //     }
+        if (mRecentIngredient != null) {
+            getRecipes(mRecentIngredient);
+       }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                addToSharedPreferences(query);
+                getRecipes(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private void getRecipes(String ingredient) {
@@ -83,5 +125,9 @@ public class RecipeListActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void addToSharedPreferences(String ingredient) {
+        mEditor.putString(Constants.PREFERENCES_INGREDIENT_KEY, ingredient).apply();
     }
 }

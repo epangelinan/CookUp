@@ -28,18 +28,6 @@
         android:textSize="60sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ingredientEditText"
-        android:background="@color/colorTextIcons"
-        android:padding="5dp"
-        android:hint="Enter Your Main Ingredient"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/findRecipesButton"
-        android:layout_alignLeft="@+id/appNameTextView"
-        android:layout_alignStart="@+id/appNameTextView" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
