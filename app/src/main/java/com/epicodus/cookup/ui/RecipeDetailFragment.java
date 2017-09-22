@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.epicodus.cookup.Constants;
 import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -34,6 +37,8 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
     @Bind(R.id.ratingTextView) TextView mRatingLabel;
     @Bind(R.id.ingredientsTextView) TextView mIngredientsLabel;
     @Bind(R.id.directionsTextView) TextView mDirectionsLabel;
+    @Bind(R.id.saveRecipeButton) TextView mSaveRecipeButton;
+
 
     private Recipe mRecipe;
 
