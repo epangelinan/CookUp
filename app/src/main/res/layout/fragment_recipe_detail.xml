@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="4.5/5"
                 android:id="@+id/ratingTextView"
-                android:layout_alignTop="@+id/restaurantNameTextView"
+                android:layout_alignTop="@+id/recipeNameTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/colorAccent"

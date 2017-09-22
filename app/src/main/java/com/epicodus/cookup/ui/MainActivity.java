@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.aboutButton) Button mAboutButton;
     @Bind(R.id.ingredientEditText) EditText mIngredientEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
+    @Bind(R.id.savedRecipesButton) Button mSavedRecipesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFindRecipesButton.setOnClickListener(this);
         mAboutButton.setOnClickListener(this);
+        mSavedRecipesButton.setOnClickListener(this);
     }
 
     @Override
@@ -86,16 +88,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if ((mIngredientEditText.getText().toString().trim().length() == 0) || (mIngredientEditText.getText().toString().trim().matches(regexStr))) {
                 Toast.makeText(MainActivity.this, "Please enter your main ingredient", Toast.LENGTH_LONG).show();
             } else {
- //               addToSharedPreferences(ingredient);
+                //               addToSharedPreferences(ingredient);
                 Intent intent = new Intent(MainActivity.this, RecipeListActivity.class);
                 intent.putExtra("ingredient", ingredient);
                 startActivity(intent);
             }
+        }
 
-        } else if (v == mAboutButton) {
+        if (v == mAboutButton) {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
+        }
 
+        if (v == mSavedRecipesButton) {
+                Intent intent = new Intent(MainActivity.this, SavedRecipeListActivity.class);
+                startActivity(intent);
         }
     }
 

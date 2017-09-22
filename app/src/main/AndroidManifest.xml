@@ -24,14 +24,15 @@
         <activity android:name=".ui.RecipeListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.cookup.ui.MainActivity"></meta-data>
+                android:value="com.epicodus.cookup.ui.MainActivity" />
         </activity>
         <activity android:name=".ui.AboutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.cookup.ui.MainActivity"></meta-data>
+                android:value="com.epicodus.cookup.ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.RecipeDetailActivity"></activity>
+        <activity android:name=".ui.RecipeDetailActivity" />
+        <activity android:name=".ui.SavedRecipeListActivity"></activity>
     </application>
 
 </manifest>

@@ -11,7 +11,10 @@
         android:layout_height="match_parent"
         android:id="@+id/imageView"
         android:src="@drawable/background"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/appNameTextView"
@@ -32,21 +35,35 @@
         android:background="@color/colorTextIcons"
         android:padding="5dp"
         android:hint="Enter Your Main Ingredient"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="15dp"
         android:layout_above="@+id/findRecipesButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/appNameTextView"
+        android:layout_alignStart="@+id/appNameTextView" />
 
     <Button
-        android:id="@+id/findRecipesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="74dp"
-        android:background="@android:color/holo_red_light"
         android:text="Find Recipes"
-        android:textColor="@color/colorTextIcons" />
+        android:id="@+id/findRecipesButton"
+        android:background="@android:color/holo_red_light"
+        android:textColor="@color/colorTextIcons"
+        android:visibility="visible"
+        android:layout_above="@+id/savedRecipesButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Saved Recipes"
+        android:id="@+id/savedRecipesButton"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorTextIcons"
+        android:visibility="visible"
+        android:layout_above="@+id/aboutButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/aboutButton"
@@ -58,4 +75,7 @@
         android:background="@android:color/holo_purple"
         android:text="About"
         android:textColor="@color/colorTextIcons" />
+
+
+
 </RelativeLayout>
