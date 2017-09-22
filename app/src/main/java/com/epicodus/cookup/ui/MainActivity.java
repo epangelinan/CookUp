@@ -51,13 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
-        if (v == mAboutButton) {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+        if (v == mSavedRecipesButton) {
+            Intent intent = new Intent(MainActivity.this, SavedRecipeListActivity.class);
             startActivity(intent);
         }
 
-        if (v == mSavedRecipesButton) {
-            Intent intent = new Intent(MainActivity.this, SavedRecipeListActivity.class);
+        if (v == mAboutButton) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
     }
