@@ -42,7 +42,6 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
         TextView recipeNameTextView = (TextView) mView.findViewById(R.id.recipeNameTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
         TextView sourceDisplayNameTextView = (TextView) mView.findViewById(R.id.sourceDisplayNameTextView);
-//        TextView ingredientsTextView = (TextView) mView.findViewById(R.id.ingredientsTextView);
 
         Picasso.with(mContext)
                 .load(recipe.getImageUrlsBySize())
@@ -53,7 +52,6 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
         recipeNameTextView.setText(recipe.getRecipeName());
         ratingTextView.setText("Rating: " + recipe.getRating() + "/5");
         sourceDisplayNameTextView.setText(recipe.getSourceDisplayName());
- //       ingredientsTextView.setText(recipe.getIngredients().get(0));
     }
 
     @Override
