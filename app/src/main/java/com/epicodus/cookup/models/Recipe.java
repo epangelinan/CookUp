@@ -15,6 +15,7 @@ public class Recipe {
     private String recipeName;
     private int totalTimeInSeconds;
     private double rating;
+    private String pushId;
 
     public Recipe() {}
 
@@ -55,6 +56,14 @@ public class Recipe {
 
     public double getRating() {
         return rating;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 
 }
