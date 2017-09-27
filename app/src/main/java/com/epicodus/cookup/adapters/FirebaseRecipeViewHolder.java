@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
+    public ImageView mRecipeImageView;
 
     View mView;
     Context mContext;
@@ -38,7 +39,8 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
     }
 
     public void bindRecipe(Recipe recipe) {
-        ImageView recipeImageView = (ImageView) mView.findViewById(R.id.recipeImageView);
+        mRecipeImageView = (ImageView) mView.findViewById(R.id.recipeImageView);
+       // ImageView recipeImageView = (ImageView) mView.findViewById(R.id.recipeImageView);
         TextView recipeNameTextView = (TextView) mView.findViewById(R.id.recipeNameTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
         TextView sourceDisplayNameTextView = (TextView) mView.findViewById(R.id.sourceDisplayNameTextView);
@@ -47,7 +49,7 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
                 .load(recipe.getImageUrlsBySize())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
-                .into(recipeImageView);
+                .into(mRecipeImageView);
 
         recipeNameTextView.setText(recipe.getRecipeName());
         ratingTextView.setText("Rating: " + recipe.getRating() + "/5");
