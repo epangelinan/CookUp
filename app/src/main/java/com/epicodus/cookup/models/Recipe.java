@@ -16,6 +16,7 @@ public class Recipe {
     private int totalTimeInSeconds;
     private double rating;
     private String pushId;
+    String index;
 
     public Recipe() {}
 
@@ -27,6 +28,7 @@ public class Recipe {
         this.recipeName = recipeName;
         this.totalTimeInSeconds = totalTimeInSeconds;
         this.rating = rating;
+        this.index = "not_specified";
     }
 
     public String getImageUrlsBySize() {
@@ -64,6 +66,14 @@ public class Recipe {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 
 }
