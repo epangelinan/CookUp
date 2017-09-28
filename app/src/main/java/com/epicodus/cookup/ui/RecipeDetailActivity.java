@@ -17,6 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class RecipeDetailActivity extends AppCompatActivity {
+    private String mSource;
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private RecipePagerAdapter adapterViewPager;
     ArrayList<Recipe> mRecipes = new ArrayList<>();
@@ -29,8 +30,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         mRecipes = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_RECIPES));
         int startingPosition = getIntent().getIntExtra(Constants.EXTRA_KEY_POSITION, 0);
+        mSource = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
-        adapterViewPager = new RecipePagerAdapter(getSupportFragmentManager(), mRecipes);
+        adapterViewPager = new RecipePagerAdapter(getSupportFragmentManager(), mRecipes, mSource);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
 

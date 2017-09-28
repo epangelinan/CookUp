@@ -47,13 +47,15 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
     private Recipe mRecipe;
     private ArrayList<Recipe> mRecipes;
     private int mPosition;
+    private String mSource;
 
-    public static RecipeDetailFragment newInstance(ArrayList<Recipe> recipes, Integer position) {
+    public static RecipeDetailFragment newInstance(ArrayList<Recipe> recipes, Integer position, String source) {
         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
         Bundle args = new Bundle();
 
         args.putParcelable(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(recipes));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
+        args.putString(Constants.KEY_SOURCE, source);
 
         recipeDetailFragment.setArguments(args);
         return recipeDetailFragment;
@@ -65,12 +67,21 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         mRecipes = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_RECIPES));
         mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
         mRecipe = mRecipes.get(mPosition);
+        mSource = getArguments().getString(Constants.KEY_SOURCE);
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         ButterKnife.bind(this, view);
+
+        if (mSource.equals(Constants.SOURCE_SAVED)) {
+            mSaveRecipeButton.setVisibility(View.GONE);
+        } else {
+            // This line of code should already exist. Make sure it now resides in this conditional:
+            mSaveRecipeButton.setOnClickListener(this);
+        }
 
         Picasso.with(view.getContext())
                 .load(mRecipe.getImageUrlsBySize())
@@ -85,8 +96,6 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         mDirectionsLabel.setText("Go to " + mRecipe.getSourceDisplayName());
 
         mDirectionsLabel.setOnClickListener(this);
-
-        mSaveRecipeButton.setOnClickListener(this);
 
         return view;
     }

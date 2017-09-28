@@ -109,7 +109,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             // Takes position of restaurant in list as parameter:
         private void createDetailFragment(int position) {
             // Creates new RecipeDetailFragment with the given position:
-            RecipeDetailFragment detailFragment = RecipeDetailFragment.newInstance(mRecipes, position);
+            RecipeDetailFragment detailFragment = RecipeDetailFragment.newInstance(mRecipes, position, Constants.SOURCE_FIND);
             // Gathers necessary components to replace the FrameLayout in the layout with the RecipeDetailFragment:
             FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
             //  Replaces the FrameLayout with the RecipeDetailFragment:
@@ -122,13 +122,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         public void onClick(View v) {
             // Determines the position of the recipe clicked:
             int itemPosition = getLayoutPosition();
-            mRecipeSelectedListener.onRecipeSelected(itemPosition, mRecipes);
+            mRecipeSelectedListener.onRecipeSelected(itemPosition, mRecipes, Constants.SOURCE_FIND);
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
             } else {
                 Intent intent = new Intent(mContext, RecipeDetailActivity.class);
                 intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
                 intent.putExtra(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(mRecipes));
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
                 mContext.startActivity(intent);
             }
         }
