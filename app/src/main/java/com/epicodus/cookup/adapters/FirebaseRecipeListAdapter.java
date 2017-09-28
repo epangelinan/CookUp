@@ -3,12 +3,18 @@ package com.epicodus.cookup.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.epicodus.cookup.Constants;
+import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
 import com.epicodus.cookup.ui.RecipeDetailActivity;
+import com.epicodus.cookup.ui.RecipeDetailFragment;
 import com.epicodus.cookup.util.ItemTouchHelperAdapter;
 import com.epicodus.cookup.util.OnStartDragListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,6 +36,7 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
     private Context mContext;
     private ChildEventListener mChildEventListener;
     private ArrayList<Recipe> mRecipes = new ArrayList<>();
+    private int mOrientation;
 
     public FirebaseRecipeListAdapter(Class<Recipe> modelClass, int modelLayout,
                                      Class<FirebaseRecipeViewHolder> viewHolderClass,
@@ -73,6 +80,12 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
     @Override
     protected void populateViewHolder(final FirebaseRecipeViewHolder viewHolder, Recipe model, int position) {
         viewHolder.bindRecipe(model);
+
+        mOrientation = viewHolder.itemView.getResources().getConfiguration().orientation;
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            createDetailFragment(0);
+        }
+
         viewHolder.mRecipeImageView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -88,12 +101,28 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
-                intent.putExtra("position", viewHolder.getAdapterPosition());
-                intent.putExtra("recipes", Parcels.wrap(mRecipes));
-                mContext.startActivity(intent);
+                int itemPosition = viewHolder.getAdapterPosition();
+                if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    createDetailFragment(itemPosition);
+                } else {
+                    Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(mRecipes));
+                    mContext.startActivity(intent);
+                }
             }
         });
+    }
+
+    private void createDetailFragment(int position) {
+        // Creates new RecipeDetailFragment with the given position:
+        RecipeDetailFragment detailFragment = RecipeDetailFragment.newInstance(mRecipes, position);
+        // Gathers necessary components to replace the FrameLayout in the layout with the RecipeDetailFragment:
+        FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+        //  Replaces the FrameLayout with the RecipeDetailFragment:
+        ft.replace(R.id.recipeDetailContainer, detailFragment);
+        // Commits these changes:
+        ft.commit();
     }
 
     @Override

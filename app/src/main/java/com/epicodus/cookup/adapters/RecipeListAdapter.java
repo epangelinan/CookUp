@@ -3,6 +3,9 @@ package com.epicodus.cookup.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epicodus.cookup.Constants;
 import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
 import com.epicodus.cookup.ui.RecipeDetailActivity;
+import com.epicodus.cookup.ui.RecipeDetailFragment;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -55,28 +60,31 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         @Bind(R.id.recipeImageView) ImageView mRecipeImageView;
         @Bind(R.id.recipeNameTextView) TextView mRecipeNameTextView;
         @Bind(R.id.sourceDisplayNameTextView) TextView mSourceDisplayNameTextView;
-        @Bind(R.id.ratingTextView)
-        TextView mRatingTextView;
+        @Bind(R.id.ratingTextView) TextView mRatingTextView;
 
         private Context mContext;
+        private int mOrientation;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
             mContext = itemView.getContext();
+
+            // Determines the current orientation of the device:
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+
+            // Checks if the recorded orientation matches Android's landscape configuration.
+            // if so, we create a new DetailFragment to display in our special landscape layout:
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(0);
+            }
+
             itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            int itemPosition = getLayoutPosition();
-            Intent intent = new Intent(mContext, RecipeDetailActivity.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("recipes", Parcels.wrap(mRecipes));
-            mContext.startActivity(intent);
-        }
-
         public void bindRecipe(Recipe recipe) {
+
             Picasso.with(mContext)
                     .load(recipe.getImageUrlsBySize())
                     .resize(MAX_WIDTH, MAX_HEIGHT)
@@ -87,5 +95,36 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             mSourceDisplayNameTextView.setText(recipe.getSourceDisplayName());
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
         }
+
+
+
+            // Takes position of restaurant in list as parameter:
+        private void createDetailFragment(int position) {
+            // Creates new RecipeDetailFragment with the given position:
+            RecipeDetailFragment detailFragment = RecipeDetailFragment.newInstance(mRecipes, position);
+            // Gathers necessary components to replace the FrameLayout in the layout with the RecipeDetailFragment:
+            FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+            //  Replaces the FrameLayout with the RecipeDetailFragment:
+            ft.replace(R.id.recipeDetailContainer, detailFragment);
+            // Commits these changes:
+            ft.commit();
+        }
+
+        @Override
+        public void onClick(View v) {
+            // Determines the position of the recipe clicked:
+            int itemPosition = getLayoutPosition();
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(itemPosition);
+            } else {
+                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+                intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                intent.putExtra(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(mRecipes));
+                mContext.startActivity(intent);
+            }
+        }
+
+
     }
+
 }
