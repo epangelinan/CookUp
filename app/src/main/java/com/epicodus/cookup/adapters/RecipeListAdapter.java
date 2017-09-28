@@ -18,6 +18,7 @@ import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
 import com.epicodus.cookup.ui.RecipeDetailActivity;
 import com.epicodus.cookup.ui.RecipeDetailFragment;
+import com.epicodus.cookup.util.OnRecipeSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -33,16 +34,19 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     private ArrayList<Recipe> mRecipes = new ArrayList<>();
     private Context mContext;
+    private OnRecipeSelectedListener mOnRecipeSelectedListener;
 
-    public RecipeListAdapter(Context context, ArrayList<Recipe> recipes) {
+
+    public RecipeListAdapter(Context context, ArrayList<Recipe> recipes, OnRecipeSelectedListener recipeSelectedListener) {
         mContext = context;
         mRecipes = recipes;
+        mOnRecipeSelectedListener = recipeSelectedListener;
     }
 
     @Override
     public RecipeListAdapter.RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_item, parent, false);
-        RecipeViewHolder viewHolder = new RecipeViewHolder(view);
+        RecipeViewHolder viewHolder = new RecipeViewHolder(view, mRecipes, mOnRecipeSelectedListener);
         return viewHolder;
     }
 
@@ -64,8 +68,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         private Context mContext;
         private int mOrientation;
+        private ArrayList<Recipe> mRecipes = new ArrayList<>();
+        private OnRecipeSelectedListener mRecipeSelectedListener;
 
-        public RecipeViewHolder(View itemView) {
+        public RecipeViewHolder(View itemView, ArrayList<Recipe> recipes, OnRecipeSelectedListener recipeSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -73,6 +79,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
             // Determines the current orientation of the device:
             mOrientation = itemView.getResources().getConfiguration().orientation;
+            mRecipes = recipes;
+            mRecipeSelectedListener = recipeSelectedListener;
 
             // Checks if the recorded orientation matches Android's landscape configuration.
             // if so, we create a new DetailFragment to display in our special landscape layout:
@@ -114,6 +122,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         public void onClick(View v) {
             // Determines the position of the recipe clicked:
             int itemPosition = getLayoutPosition();
+            mRecipeSelectedListener.onRecipeSelected(itemPosition, mRecipes);
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
             } else {

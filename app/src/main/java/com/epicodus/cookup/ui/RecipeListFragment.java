@@ -1,6 +1,7 @@
 package com.epicodus.cookup.ui;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -21,6 +22,7 @@ import com.epicodus.cookup.R;
 import com.epicodus.cookup.adapters.RecipeListAdapter;
 import com.epicodus.cookup.models.Recipe;
 import com.epicodus.cookup.services.YummlyService;
+import com.epicodus.cookup.util.OnRecipeSelectedListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +44,17 @@ public class RecipeListFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentIngredient;
+    private OnRecipeSelectedListener mOnRecipeSelectedListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mOnRecipeSelectedListener = (OnRecipeSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + e.getMessage());
+        }
+    }
 
     public RecipeListFragment() {
         // Required empty public constructor
@@ -125,7 +138,7 @@ public class RecipeListFragment extends Fragment {
 
                     @Override
                     public void run() {
-                        mAdapter = new RecipeListAdapter(getActivity(), mRecipes);
+                        mAdapter = new RecipeListAdapter(getActivity(), mRecipes, mOnRecipeSelectedListener);
                         // Line above states `getActivity()` instead of previous
                         // 'getApplicationContext()' because fragments do not have own context,
                         // must instead inherit it from corresponding activity.
