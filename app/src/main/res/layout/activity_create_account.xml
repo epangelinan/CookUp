@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_purple"
-    tools:context="com.epicodus.myrestaurants.ui.CreateAccountActivity">
+    tools:context="com.epicodus.cookup.ui.CreateAccountActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
