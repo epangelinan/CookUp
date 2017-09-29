@@ -31,18 +31,4 @@ public class MainActivityInstrumentationTest {
                 (withText("About CookUp")));
         closeSoftKeyboard();
     }
-
-    @Test
-    public void validateEditText() {
-        onView(withId(R.id.ingredientEditText)).perform(typeText("chicken"))
-                .check(matches(withText("chicken")));
-        closeSoftKeyboard();
-    }
-
-    @Test
-    public void ingredientIsSentToRecipesActivity() {
-        String ingredient = "chicken";
-        onView(withId(R.id.ingredientEditText)).perform(typeText(ingredient), closeSoftKeyboard());
-        onView(withId(R.id.findRecipesButton)).perform(click());
-    }
 }
