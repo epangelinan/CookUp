@@ -104,8 +104,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
         }
 
-
-
             // Takes position of restaurant in list as parameter:
         private void createDetailFragment(int position) {
             // Creates new RecipeDetailFragment with the given position:
@@ -133,8 +131,5 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
                 mContext.startActivity(intent);
             }
         }
-
-
     }
-
 }

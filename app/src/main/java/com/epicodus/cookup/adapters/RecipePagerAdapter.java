@@ -31,4 +31,5 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mRecipes.get(position).getRecipeName();
     }
+
 }

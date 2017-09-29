@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.epicodus.cookup.Constants;
 import com.epicodus.cookup.R;
 import com.epicodus.cookup.models.Recipe;
@@ -18,9 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
 
 public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder {

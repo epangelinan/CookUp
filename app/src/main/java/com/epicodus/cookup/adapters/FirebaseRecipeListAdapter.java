@@ -74,7 +74,6 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
 
             }
         });
-
     }
 
     @Override
@@ -154,6 +153,4 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
         setIndexInFirebase();
         mRef.removeEventListener(mChildEventListener);
     }
-
-
 }
