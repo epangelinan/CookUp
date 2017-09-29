@@ -75,7 +75,6 @@ public class RecipeListActivity extends AppCompatActivity implements OnRecipeSel
             outState.putParcelable(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(mRecipes));
             outState.putString(Constants.KEY_SOURCE, mSource);
         }
-
     }
 
     @Override

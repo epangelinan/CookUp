@@ -79,7 +79,6 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         if (mSource.equals(Constants.SOURCE_SAVED)) {
             mSaveRecipeButton.setVisibility(View.GONE);
         } else {
-            // This line of code should already exist. Make sure it now resides in this conditional:
             mSaveRecipeButton.setOnClickListener(this);
         }
 

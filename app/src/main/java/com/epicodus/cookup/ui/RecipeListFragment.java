@@ -146,8 +146,8 @@ public class RecipeListFragment extends Fragment {
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                         // Line above states 'new LinearLayoutManager(getActivity());' instead of previous
-                        // 'new LinearLayoutManager(RestaurantListActivity.this);' when method resided
-                        // in RestaurantListActivity because Fragments do not have context
+                        // 'new LinearLayoutManager(RecipeListActivity.this);' when method resided
+                        // in RecipeListActivity because Fragments do not have context
                         // and must instead inherit from corresponding activity.
 
                         mRecyclerView.setLayoutManager(layoutManager);
