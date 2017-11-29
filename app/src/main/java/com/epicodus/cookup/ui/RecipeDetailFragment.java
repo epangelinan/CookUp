@@ -92,7 +92,7 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         mSourceDisplayNameLabel.setText(mRecipe.getSourceDisplayName());
         mIngredientsLabel.setText(android.text.TextUtils.join(", ", mRecipe.getIngredients()));
         mRatingLabel.setText(Double.toString(mRecipe.getRating()) + "/5");
-        mDirectionsLabel.setText("Go to " + mRecipe.getSourceDisplayName());
+        mDirectionsLabel.setText("Get the Recipe");
 
         mDirectionsLabel.setOnClickListener(this);
 
@@ -103,11 +103,10 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         if (v == mDirectionsLabel) {
 
-            String sourceName = mRecipe.getSourceDisplayName();
-            sourceName = sourceName.replaceAll("\\s","");
+            String recipeId = mRecipe.getId();
 
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://" + sourceName + ".com"));
+                    Uri.parse("https://www.yummly.com/recipe/" + recipeId ));
             startActivity(webIntent);
         }
         if (v == mSaveRecipeButton) {
