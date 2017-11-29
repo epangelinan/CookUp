@@ -34,7 +34,7 @@ _Please contact Lynn at esveth@aol.com if you have any questions._
 
 ## Technologies Used
 
-_Android Studio v2.3.3, Java, Yummly API, Firebase, Git, GitHub, _
+_Android Studio v2.3.3, Java, Yummly API, Firebase, Git, GitHub_
 
 ### License
 
