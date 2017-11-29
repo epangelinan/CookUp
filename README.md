@@ -1,6 +1,6 @@
 # _CookUp_
 
-#### _This is an Android application that allows the user to search for recipes_
+#### _This is an Android application that allows the user to search for and save recipes_
 
 #### By _**Esvethlynna Pangelinan**_
 
