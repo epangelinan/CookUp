@@ -6,7 +6,7 @@
 
 ## Description
 
-_In the welcome screen, the CookUp Login screen is displayed where the user can log in or sign up for an account.  After successfully logging in, three buttons are shown:
+In the welcome screen, the CookUp Login screen is displayed where the user can log in or sign up for an account.  After successfully logging in, three buttons are shown:
 
 1. Find Recipes:  after the user enters one or more ingredients of their desired dish, a list of matching recipes is displayed.  Tapping on a recipe from the list displays the recipe's details, which include: the recipe's name, source, rating, web link to "Get the Recipe", and the recipe's ingredients.  Tapping on "Get the Recipe" launches the web page containing more details and the cooking directions.  A "Save Recipe" button appears at the bottom of the recipe detail screen.  Tapping on the button saves the recipe to the user's list of saved recipes.
 
@@ -14,7 +14,7 @@ _In the welcome screen, the CookUp Login screen is displayed where the user can 
 
 3. About:  displays a short description of the CookUp app
 
-The user can log out of the CookUp app by tapping on the three vertical dots at the top right corner of the screen and selecting the "Logout" option._
+The user can log out of the CookUp app by tapping on the three vertical dots at the top right corner of the screen and selecting the "Logout" option.
 
 ## Setup/Installation Requirements
 
